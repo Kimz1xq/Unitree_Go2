@@ -39,6 +39,8 @@ mkdir -p ~/Projects
 git clone https://github.com/Kimz1xq/Unitree_Go2.git ~/Projects/Unitree_Go2
 ln -sfn Projects/Unitree_Go2 ~/Unitree_Go2  # optional compatibility path
 cd ~/Projects/Unitree_Go2
+scripts/install_workspace_env.sh
+source ~/.bashrc
 ```
 
 Required runtime dependencies depend on what you run:
@@ -55,6 +57,8 @@ Sim2Sim / SLAM / Planning:
   - colcon, CMake, PCL/Eigen
   - FAST-LIO2 workspace if running FAST-LIO2
 ```
+
+For a full desktop-to-desktop transfer, including the local IsaacLab/OMX/OpenManipulator companion folders, use the transfer bundle documented in `docs/TRANSFER_WORKSPACE.md`.
 
 ## Select Model, Map, And Backend
 
