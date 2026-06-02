@@ -2,7 +2,7 @@
 
 Updated: 2026-06-02
 
-This repository is the active Go2 workspace. Use `~/Projects/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material. Keep shells, editors, Docker mounts, and scripts pointed at the real `~/Projects/...` paths instead of compatibility symlinks.
+This repository is the active Go2 workspace. Use `~/Project/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material. Keep shells, editors, Docker mounts, and scripts pointed at real folders instead of compatibility symlinks.
 
 ## Active Layout
 
@@ -29,7 +29,7 @@ These local folders were reviewed and folded into the consolidated repository:
 | `~/go2_sim_ws/src/TRG-planner-1` | `planning/trg_planner` |
 | `~/ICRA2023_Quadruped_Robot_Challenges` | `maps/competition/ICRA2023_Quadruped_Robot_Challenges` |
 | `~/ICRA2024_Quadruped_Robot_Challenges` | `maps/competition/ICRA2024_Quadruped_Robot_Challenges` |
-| `~/Downloads/ICROS2025_Quadruped_Robot_Challenges-main` | `maps/competition/ICROS2025_Quadruped_Robot_Challenges` |
+| downloaded `ICROS2025_Quadruped_Robot_Challenges-main` extract | `maps/competition/ICROS2025_Quadruped_Robot_Challenges` |
 | `~/unitree_sdk2` | `third_party/unitree_sdk2` |
 | `~/unitree_sdk2_python` | `third_party/unitree_sdk2_python` |
 
@@ -60,4 +60,4 @@ Recommended archive candidates:
 - `~/unitree_sdk2`
 - `~/unitree_sdk2_python`
 
-Keep `~/unitree_rl_lab` removed unless an old external tool explicitly requires it. Prefer updating that tool to `~/Projects/Unitree_Go2/training/isaac_lab/unitree_rl_lab`.
+Keep `~/unitree_rl_lab` removed unless an old external tool explicitly requires it. Prefer updating that tool to `~/Project/Unitree_Go2/training/isaac_lab/unitree_rl_lab`.

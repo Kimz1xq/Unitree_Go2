@@ -3,14 +3,28 @@
 # Source this file from ~/.bashrc to reproduce the local robotics workspace layout.
 export PATH="$HOME/.pixi/bin:$PATH"
 
-export PROJECTS_DIR="${PROJECTS_DIR:-$HOME/Projects}"
-export UNITREE_GO2_ROOT="${UNITREE_GO2_ROOT:-$PROJECTS_DIR/Unitree_Go2}"
+workspace_find_dir() {
+    local name="$1"
+    local preferred="$2"
+    if [ -d "$preferred" ]; then
+        printf '%s\n' "$preferred"
+    else
+        local found
+        found="$(find "$HOME" -maxdepth 4 -type d -name "$name" -print -quit 2>/dev/null)"
+        printf '%s\n' "${found:-$preferred}"
+    fi
+}
+
+[ -f "$HOME/.config/robotics_workspace.env" ] && . "$HOME/.config/robotics_workspace.env"
+
+export PROJECTS_DIR="${PROJECTS_DIR:-$(workspace_find_dir Project "$HOME/Project")}"
+export UNITREE_GO2_ROOT="${UNITREE_GO2_ROOT:-$(workspace_find_dir Unitree_Go2 "$PROJECTS_DIR/Unitree_Go2")}"
 export REPO="${REPO:-$UNITREE_GO2_ROOT}"
-export ISAACLAB_ROOT="${ISAACLAB_ROOT:-$PROJECTS_DIR/IsaacLab}"
+export ISAACLAB_ROOT="${ISAACLAB_ROOT:-$(workspace_find_dir IsaacLab "$PROJECTS_DIR/IsaacLab")}"
 export UNITREE_RL_LAB_ROOT="${UNITREE_RL_LAB_ROOT:-$UNITREE_GO2_ROOT/training/isaac_lab/unitree_rl_lab}"
 export OMX_F_ISAACLAB_ROOT="${OMX_F_ISAACLAB_ROOT:-$ISAACLAB_ROOT/omx_f_isaaclab}"
-export OPEN_MANIPULATOR_ROOT="${OPEN_MANIPULATOR_ROOT:-$PROJECTS_DIR/open_manipulator}"
-export ROS2_WS="${ROS2_WS:-$PROJECTS_DIR/ros2_ws}"
+export OPEN_MANIPULATOR_ROOT="${OPEN_MANIPULATOR_ROOT:-$(workspace_find_dir open_manipulator "$PROJECTS_DIR/open_manipulator")}"
+export ROS2_WS="${ROS2_WS:-$(workspace_find_dir ros2_ws "$PROJECTS_DIR/ros2_ws")}"
 export GO2_ROUGHNAV_ROOT="${GO2_ROUGHNAV_ROOT:-$UNITREE_GO2_ROOT/ros2/go2_roughnav}"
 
 source_if_exists() {
