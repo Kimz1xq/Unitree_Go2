@@ -5,17 +5,29 @@ REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 
 mkdir -p "${HOME}/go2_roughnav_ws/src" "${HOME}/go2_sim_ws/src"
 
-ln -sfn "${REPO}/ros2/go2_roughnav" "${HOME}/go2_roughnav_ws/src/go2_roughnav"
-ln -sfn "${REPO}/planning/trg_planner" "${HOME}/go2_sim_ws/src/TRG-planner-1"
+copy_source() {
+  local src="$1"
+  local dst="$2"
+  rm -rf "${dst}"
+  mkdir -p "$(dirname "${dst}")"
+  if command -v rsync >/dev/null 2>&1; then
+    rsync -a --exclude build/ --exclude install/ --exclude log/ --exclude logs/ "${src}/" "${dst}/"
+  else
+    cp -a "${src}" "${dst}"
+  fi
+}
+
+copy_source "${REPO}/ros2/go2_roughnav" "${HOME}/go2_roughnav_ws/src/go2_roughnav"
+copy_source "${REPO}/planning/trg_planner" "${HOME}/go2_sim_ws/src/TRG-planner-1"
 
 cat <<EOF
-ROS2 workspace links are ready.
+ROS2 workspace source copies are ready.
 
 go2_roughnav:
-  ${HOME}/go2_roughnav_ws/src/go2_roughnav -> ${REPO}/ros2/go2_roughnav
+  ${HOME}/go2_roughnav_ws/src/go2_roughnav
 
 TRG-planner:
-  ${HOME}/go2_sim_ws/src/TRG-planner-1 -> ${REPO}/planning/trg_planner
+  ${HOME}/go2_sim_ws/src/TRG-planner-1
 
 Next:
   source /opt/ros/humble/setup.bash
@@ -26,9 +38,9 @@ Next:
 
   cd ${HOME}/go2_sim_ws
   export CMAKE_PREFIX_PATH=${HOME}/go2_sim_ws/install/trg_planner_core:\${CMAKE_PREFIX_PATH:-}
-  colcon build --symlink-install --base-paths src/TRG-planner-1/pipelines/ros2 --cmake-args -DCMAKE_PREFIX_PATH=\$CMAKE_PREFIX_PATH
+  colcon build --base-paths src/TRG-planner-1/pipelines/ros2 --cmake-args -DCMAKE_PREFIX_PATH=\$CMAKE_PREFIX_PATH
 
   source ${HOME}/go2_sim_ws/install/setup.bash
   cd ${HOME}/go2_roughnav_ws
-  colcon build --symlink-install --packages-select go2_roughnav
+  colcon build --packages-select go2_roughnav
 EOF

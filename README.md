@@ -37,7 +37,6 @@ Excluded by design: old V2/V3/V4 training logs, build/install outputs, caches, T
 ```bash
 mkdir -p ~/Projects
 git clone https://github.com/Kimz1xq/Unitree_Go2.git ~/Projects/Unitree_Go2
-ln -sfn Projects/Unitree_Go2 ~/Unitree_Go2  # optional compatibility path
 cd ~/Projects/Unitree_Go2
 scripts/install_workspace_env.sh
 source ~/.bashrc
@@ -281,7 +280,7 @@ rviz2 -d "$REPO/ros2/go2_roughnav/rviz/teleop_map_debug.rviz"
 
 ## ROS2 Workspace Setup
 
-Create symlink workspaces from this consolidated repo:
+Create ROS2 workspace source copies from this consolidated repo:
 
 ```bash
 cd "$REPO"
@@ -302,7 +301,7 @@ cmake --install cpp/trg_planner/build
 
 cd ~/go2_sim_ws
 export CMAKE_PREFIX_PATH=$HOME/go2_sim_ws/install/trg_planner_core:${CMAKE_PREFIX_PATH:-}
-colcon build --symlink-install \
+colcon build \
   --base-paths src/TRG-planner-1/pipelines/ros2 \
   --cmake-args -DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH
 ```
@@ -314,7 +313,7 @@ source /opt/ros/humble/setup.bash
 source ~/go2_sim_ws/install/setup.bash
 
 cd ~/go2_roughnav_ws
-colcon build --symlink-install --packages-select go2_roughnav
+colcon build --packages-select go2_roughnav
 source install/setup.bash
 ```
 
@@ -464,6 +463,6 @@ python3 -m py_compile \
 
 ## Local Folder Cleanup Policy
 
-The consolidated workspace is `~/Projects/Unitree_Go2`. `~/Unitree_Go2` can remain as a compatibility symlink for older commands and editor tabs. Older sibling folders such as `~/unitree_rl_lab`, `~/unitree_mujoco`, `~/go2_sim_ws`, `~/go2_roughnav_ws`, `~/ICRA2023_Quadruped_Robot_Challenges`, and `~/ICRA2024_Quadruped_Robot_Challenges` were reviewed as source material. They should be treated as legacy copies after this repository is validated on the target desktop.
+The consolidated workspace is `~/Projects/Unitree_Go2`. Do not keep extra compatibility symlinks in `~/`; use the real `~/Projects/...` paths in shells, editors, Docker mounts, and scripts. Older sibling folders such as `~/unitree_rl_lab`, `~/unitree_mujoco`, `~/go2_sim_ws`, `~/go2_roughnav_ws`, `~/ICRA2023_Quadruped_Robot_Challenges`, and `~/ICRA2024_Quadruped_Robot_Challenges` were reviewed as source material. They should be treated as legacy copies after this repository is validated on the target desktop.
 
 See `docs/WORKSPACE_CONSOLIDATION.md` for what was integrated, what was excluded, and which old local folders can be archived after validation.

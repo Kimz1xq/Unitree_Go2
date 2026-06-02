@@ -7,13 +7,17 @@ projects_dir="${PROJECTS_DIR:-$HOME/Projects}"
 mkdir -p "$projects_dir" "$HOME/Library/Inbox" "$HOME/Library/Documents" \
     "$HOME/Media/Images" "$HOME/Media/Videos" "$HOME/Media/Music"
 
-ln -sfn Projects/Unitree_Go2 "$HOME/Unitree_Go2"
-ln -sfn Projects/IsaacLab "$HOME/IsaacLab"
-ln -sfn Projects/Unitree_Go2/training/isaac_lab/unitree_rl_lab "$HOME/unitree_rl_lab"
+remove_stale_link() {
+    local path="$1"
+    if [ -L "$path" ]; then
+        rm -f "$path"
+    fi
+}
 
-if [ -d "$projects_dir/IsaacLab/omx_f_isaaclab" ]; then
-    ln -sfn IsaacLab/omx_f_isaaclab "$projects_dir/omx_f_isaaclab"
-fi
+remove_stale_link "$HOME/Unitree_Go2"
+remove_stale_link "$HOME/IsaacLab"
+remove_stale_link "$HOME/unitree_rl_lab"
+remove_stale_link "$projects_dir/omx_f_isaaclab"
 
 env_line='[ -f "$HOME/Projects/Unitree_Go2/scripts/workspace_env.sh" ] && . "$HOME/Projects/Unitree_Go2/scripts/workspace_env.sh"'
 if ! grep -Fq "$env_line" "$HOME/.bashrc" 2>/dev/null; then
@@ -32,4 +36,5 @@ if command -v xdg-user-dirs-update >/dev/null 2>&1; then
 fi
 
 printf 'Workspace environment installed from %s\n' "$repo_root"
+printf 'Primary workspace root: %s\n' "$projects_dir/Unitree_Go2"
 printf 'Run: source ~/.bashrc\n'

@@ -12,14 +12,7 @@ The target layout is:
 ~/Projects/ros2_ws
 ```
 
-Compatibility links:
-
-```text
-~/Unitree_Go2 -> ~/Projects/Unitree_Go2
-~/IsaacLab -> ~/Projects/IsaacLab
-~/unitree_rl_lab -> ~/Projects/Unitree_Go2/training/isaac_lab/unitree_rl_lab
-~/Projects/omx_f_isaaclab -> ~/Projects/IsaacLab/omx_f_isaaclab
-```
+No compatibility symlinks are created. Keep editors, shells, Docker mounts, and scripts pointed at the real `~/Projects/...` paths.
 
 ## Restore From Local Bundle
 

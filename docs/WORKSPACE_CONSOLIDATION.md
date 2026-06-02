@@ -2,7 +2,7 @@
 
 Updated: 2026-06-02
 
-This repository is the active Go2 workspace. Use `~/Projects/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material. `~/Unitree_Go2` may be kept as a compatibility symlink for older commands.
+This repository is the active Go2 workspace. Use `~/Projects/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material. Keep shells, editors, Docker mounts, and scripts pointed at the real `~/Projects/...` paths instead of compatibility symlinks.
 
 ## Active Layout
 
@@ -60,4 +60,4 @@ Recommended archive candidates:
 - `~/unitree_sdk2`
 - `~/unitree_sdk2_python`
 
-Treat `~/unitree_rl_lab` as the last folder to archive because older Docker/IsaacLab commands may still mount it directly.
+Keep `~/unitree_rl_lab` removed unless an old external tool explicitly requires it. Prefer updating that tool to `~/Projects/Unitree_Go2/training/isaac_lab/unitree_rl_lab`.
