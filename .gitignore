@@ -29,3 +29,7 @@ events.out.tfevents*
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+# Source directories whose names look like runtime output.
+!third_party/unitree_sdk2/include/unitree/common/log/
+!third_party/unitree_sdk2/include/unitree/common/log/**

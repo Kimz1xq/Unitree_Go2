@@ -359,6 +359,8 @@ CMakeLists.txt.user
 
 srv/_*.py
 *.pcd
+!prebuilt_maps/
+!prebuilt_maps/*.pcd
 *.pyc
 qtcreator-*
 *.user
