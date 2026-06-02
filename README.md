@@ -35,8 +35,10 @@ Excluded by design: old V2/V3/V4 training logs, build/install outputs, caches, T
 ## Clone On Another Desktop
 
 ```bash
-git clone https://github.com/Kimz1xq/Unitree_Go2.git ~/Unitree_Go2
-cd ~/Unitree_Go2
+mkdir -p ~/Projects
+git clone https://github.com/Kimz1xq/Unitree_Go2.git ~/Projects/Unitree_Go2
+ln -sfn Projects/Unitree_Go2 ~/Unitree_Go2  # optional compatibility path
+cd ~/Projects/Unitree_Go2
 ```
 
 Required runtime dependencies depend on what you run:
@@ -59,7 +61,7 @@ Sim2Sim / SLAM / Planning:
 Set these once per shell. Change them whenever you want a different model or scene.
 
 ```bash
-export REPO="${REPO:-$HOME/Unitree_Go2}"
+export REPO="${REPO:-$HOME/Projects/Unitree_Go2}"
 export TRAINING_BACKEND="${TRAINING_BACKEND:-isaac_lab}"
 
 export POLICY_NAME="${POLICY_NAME:-v5_model_40000}"
@@ -434,7 +436,7 @@ Check ONNX:
 python3 - <<'PY'
 import os
 import onnx
-p = os.environ.get("POLICY_ONNX", os.path.expanduser("~/Unitree_Go2/artifacts/policies/v5_model_40000/exported/policy.onnx"))
+p = os.environ.get("POLICY_ONNX", os.path.expanduser("~/Projects/Unitree_Go2/artifacts/policies/v5_model_40000/exported/policy.onnx"))
 m = onnx.load(p)
 onnx.checker.check_model(m)
 print("ONNX OK")
@@ -458,6 +460,6 @@ python3 -m py_compile \
 
 ## Local Folder Cleanup Policy
 
-The consolidated workspace is `~/Unitree_Go2`. Older sibling folders such as `~/unitree_rl_lab`, `~/unitree_mujoco`, `~/go2_sim_ws`, `~/go2_roughnav_ws`, `~/ICRA2023_Quadruped_Robot_Challenges`, and `~/ICRA2024_Quadruped_Robot_Challenges` were reviewed as source material. They should be treated as legacy copies after this repository is validated on the target desktop.
+The consolidated workspace is `~/Projects/Unitree_Go2`. `~/Unitree_Go2` can remain as a compatibility symlink for older commands and editor tabs. Older sibling folders such as `~/unitree_rl_lab`, `~/unitree_mujoco`, `~/go2_sim_ws`, `~/go2_roughnav_ws`, `~/ICRA2023_Quadruped_Robot_Challenges`, and `~/ICRA2024_Quadruped_Robot_Challenges` were reviewed as source material. They should be treated as legacy copies after this repository is validated on the target desktop.
 
 See `docs/WORKSPACE_CONSOLIDATION.md` for what was integrated, what was excluded, and which old local folders can be archived after validation.

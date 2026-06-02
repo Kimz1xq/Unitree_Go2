@@ -2,7 +2,7 @@
 
 Updated: 2026-06-02
 
-This repository is the active Go2 workspace. Use `~/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material.
+This repository is the active Go2 workspace. Use `~/Projects/Unitree_Go2` as the single project root for IsaacLab training, MuJoCo sim2sim, ROS2 SLAM, TRG-planner, competition maps, and Unitree SDK material. `~/Unitree_Go2` may be kept as a compatibility symlink for older commands.
 
 ## Active Layout
 

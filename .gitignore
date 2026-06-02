@@ -22,7 +22,10 @@ events.out.tfevents*
 *.pth
 
 # Large local editor/cache files
+.vscode/
+**/.vscode/
 .vscode/browse.vc.db
+**/browse.vc.db*
 .vscode/ipch/
 .idea/
 
